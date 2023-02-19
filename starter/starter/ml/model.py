@@ -60,3 +60,7 @@ def inference(model, X):
     """
     preds = model.predict(X)
     return preds
+
+
+def save_model(model, folder):
+    pass
