@@ -1,3 +1,6 @@
+import os
+import pickle
+
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 
@@ -62,5 +65,16 @@ def inference(model, X):
     return preds
 
 
-def save_model(model, folder):
-    pass
+def save_model(model, folder, filename):
+    """Save the trained model as pickled file.
+    Inputs
+    -------
+    model : sklearn.ensemble.RandomForestClassifier
+        Trained ml model.
+    folder : str
+        Directory where model is saved.
+    filename: str
+        Name of model file.
+    """
+    pickle.dump(model, 
+        open(os.path.join(folder, filename), "wb"))
