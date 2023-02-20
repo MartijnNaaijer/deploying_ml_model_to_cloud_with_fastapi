@@ -47,6 +47,7 @@ def process_data(
     if label is not None:
         y = X[label]
         X = X.drop([label], axis=1)
+        print(X)
     else:
         y = np.array([])
 
