@@ -2,6 +2,8 @@
 
 from sklearn.model_selection import train_test_split
 
+import ml.preprocess_data as ppd
+
 # Add the necessary imports for the starter code.
 
 # Add code to load in the data.
@@ -19,7 +21,7 @@ cat_features = [
     "sex",
     "native-country",
 ]
-X_train, y_train, encoder, lb = process_data(
+X_train, y_train, encoder, lb = ppd.process_data(
     train, categorical_features=cat_features, label="salary", training=True
 )
 
