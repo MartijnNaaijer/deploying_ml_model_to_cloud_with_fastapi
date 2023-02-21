@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 
 from ..src.data_processing.ml import preprocess_data as ppd
-from config import ROOT, DATA_FOLDER, DATA_FILE
+from .config import ROOT, DATA_FOLDER, DATA_FILE
 
  
 @pytest.fixture(scope="module")

@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from config import ROOT, DATA_FOLDER, DATA_FILE
+from .config import ROOT, DATA_FOLDER, DATA_FILE
 
 
 @pytest.fixture(scope="module")
