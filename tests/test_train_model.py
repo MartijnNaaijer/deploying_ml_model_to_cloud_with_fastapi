@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 
 from config import ROOT, DATA_FOLDER, DATA_FILE
-from ..src/data_processing import model_data
+from ..src.data_processing import model_data
 
  
 @pytest.fixture(scope="module")
