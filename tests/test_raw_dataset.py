@@ -27,7 +27,7 @@ def test_rows_data(input_df):
 
 
 def test_values_in_dependent_variable(input_df):
-    assert set(input_df.salary) == {'<=50K', '>=50K'}
+    assert set(input_df.salary) == {'<=50K', '>50K'}
 
 
 def test_mean_age(input_df):
