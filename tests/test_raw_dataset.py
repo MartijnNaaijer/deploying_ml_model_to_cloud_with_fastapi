@@ -7,9 +7,11 @@ import numpy as np
 import pandas as pd
 import pytest
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_FOLDER = 'data'
-DATA_FILE = 'census.csv'
+from ..config import ROOT, DATA_FOLDER, DATA_FILE
+
+#ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#DATA_FOLDER = 'data'
+#DATA_FILE = 'census.csv'
 
 
 @pytest.fixture(scope="module")
@@ -27,11 +29,11 @@ def test_rows_data(input_df):
 
 
 def test_values_in_dependent_variable(input_df):
-    assert set(input_df.salary) == {'<=50K', '>50K'}
+    assert set(input_df['salary']) == {'<=50K', '>50K'}
 
 
 def test_mean_age(input_df):
-    assert 20 < (np.mean(input_df.age)) < 60
+    assert 20 < (np.mean(input_df['age'])) < 60
 
 def test_education_values(input_df):
     assert np.min(input_df['education-num']) == 1
