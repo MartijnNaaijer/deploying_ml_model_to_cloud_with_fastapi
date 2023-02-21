@@ -4,11 +4,7 @@ import pandas as pd
 import pytest
 
 from ..src.data_processing.ml import preprocess_data as ppd
-from ..config import ROOT, DATA_FOLDER, DATA_FILE
-
-#ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#DATA_FOLDER = 'data'
-#DATA_FILE = 'census.csv'
+from config import ROOT, DATA_FOLDER, DATA_FILE
 
  
 @pytest.fixture(scope="module")

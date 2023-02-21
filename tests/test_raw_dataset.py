@@ -7,11 +7,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from ..config import ROOT, DATA_FOLDER, DATA_FILE
-
-#ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#DATA_FOLDER = 'data'
-#DATA_FILE = 'census.csv'
+from config import ROOT, DATA_FOLDER, DATA_FILE
 
 
 @pytest.fixture(scope="module")
@@ -38,8 +34,4 @@ def test_mean_age(input_df):
 def test_education_values(input_df):
     assert np.min(input_df['education-num']) == 1
     assert np.max(input_df['education-num']) == 16
-
-
-
-
     
