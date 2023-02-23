@@ -83,17 +83,25 @@ def save_model(model, folder, filename):
 def load_model(folder, filename):
     """Load the pickled model.
     Inputs
-    _______
+    --------
     folder : str
         Directory where model is saved.
     filename : str
         Name of the model.
     Returns
+    --------
         model
     """
     model = pickle.load(open(os.path.join(folder, 
                         filename), 'rb'))
     return model
 
-def make_inference_from_api(input_json):
+def make_inference_from_api(input_json, folder, filename):
+    """Makes a prediction with a trained and saved model
+       with data input from the api.
+    Inputs
+    """
+    loaded_model = load_model(folder, filename)
     pass
+
+
