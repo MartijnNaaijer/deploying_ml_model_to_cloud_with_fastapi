@@ -78,3 +78,22 @@ def save_model(model, folder, filename):
     """
     pickle.dump(model, 
         open(os.path.join(folder, filename), "wb"))
+
+
+def load_model(folder, filename):
+    """Load the pickled model.
+    Inputs
+    _______
+    folder : str
+        Directory where model is saved.
+    filename : str
+        Name of the model.
+    Returns
+        model
+    """
+    model = pickle.load(open(os.path.join(folder, 
+                        filename), 'rb'))
+    return model
+
+def make_inference_from_api(input_json):
+    pass
