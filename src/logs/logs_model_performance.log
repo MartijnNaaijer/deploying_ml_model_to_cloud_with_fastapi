@@ -1,0 +1,21 @@
+INFO:root:Overall model performance
+INFO:root:precision 0.9088937093275488, recall 0.2568976088289393, fbeta 0.4005736137667304
+INFO:root:
+INFO:root:Performance on slices of feature sex
+INFO:root:Value  Female has 2192 observations.
+INFO:root:precision 1.0, recall 0.07630522088353414, fbeta 0.1417910447761194
+INFO:root:Value  Male has 4321 observations.
+INFO:root:precision 0.9049773755656109, recall 0.2894356005788712, fbeta 0.4385964912280702
+INFO:root:
+INFO:root:Performance on slices of feature race
+INFO:root:Value  Black has 603 observations.
+INFO:root:precision 0.9090909090909091, recall 0.14492753623188406, fbeta 0.25
+INFO:root:Value  Other has 55 observations.
+INFO:root:precision 1.0, recall 0.5, fbeta 0.6666666666666666
+INFO:root:Value  Amer-Indian-Eskimo has 56 observations.
+INFO:root:precision 1.0, recall 0.2, fbeta 0.33333333333333337
+INFO:root:Value  White has 5600 observations.
+INFO:root:precision 0.9112149532710281, recall 0.260347129506008, fbeta 0.40498442367601245
+INFO:root:Value  Asian-Pac-Islander has 199 observations.
+INFO:root:precision 0.8333333333333334, recall 0.2830188679245283, fbeta 0.4225352112676056
+INFO:root:

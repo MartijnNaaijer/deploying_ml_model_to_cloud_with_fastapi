@@ -1,10 +1,18 @@
 # Script to train machine learning model.
+import logging
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
 import ml.preprocess_data as ppd
 import ml.model_data as md
+
+
+logging.basicConfig(
+    filename='../logs/logs_model_performance.log',
+    level = logging.INFO,
+    filemode='w')
+
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH = '../../data'
@@ -39,3 +47,25 @@ X_test, y_test, _, _ = ppd.process_data(
 # Train and save a model.
 model = md.train_model(X_train, y_train)
 md.save_model(model, os.path.join(ROOT, 'model'), 'trained_model.pkl')
+
+
+## Validate model on testset and slices
+test_predictions = md.inference(model, X_test)
+y_test_array = md.convert_output_to_binary_array(y_test)
+
+precision, recall, fbeta = md.compute_model_metrics(y_test_array, test_predictions)
+logging.info('Overall model performance')
+logging.info(f'precision {precision}, recall {recall}, fbeta {fbeta}')
+logging.info('')
+
+
+slice_eval_features = ['sex', 'race']
+for feature in slice_eval_features:
+    logging.info(f'Performance on slices of feature {feature}')
+    for value, obs_count, precision, recall, fbeta in md.evaluate_on_slices(test, 
+                                                                            test_predictions, 
+                                                                            y_test_array, 
+                                                                            feature):
+        logging.info(f'Value {value} has {obs_count} observations.')
+        logging.info(f'precision {precision}, recall {recall}, fbeta {fbeta}')
+    logging.info('')
