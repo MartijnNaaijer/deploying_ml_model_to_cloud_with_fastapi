@@ -102,6 +102,7 @@ def load_model(folder, filename):
                         filename), 'rb'))
     return model
 
+
 def make_inference_from_api(input_json, folder, filename):
     """Makes a prediction with a trained and saved model
        with data input from the api.
@@ -131,7 +132,6 @@ def evaluate_on_slices(test, test_predictions, y_test_array, column_name):
         slice_indices = test[column_name] == value
         predictions_slice = test_predictions[slice_indices]
         y_test_slice = y_test_array[slice_indices]
-        precision, recall, fbeta = md.compute_model_metrics(y_test_slice, predictions_slice)
+        precision, recall, fbeta = compute_model_metrics(y_test_slice, predictions_slice)
         slice_length = len(y_test_slice)
         yield value, slice_length, precision, recall, fbeta
-
