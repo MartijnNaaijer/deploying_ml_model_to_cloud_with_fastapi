@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
-import data_processing.ml.model_data as md
+from .data_processing.ml import model_data as md
 
 class InputData(BaseModel):
     age: int
