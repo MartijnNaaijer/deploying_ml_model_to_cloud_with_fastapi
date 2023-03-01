@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 
-from preprocess_data import process_data
+from .preprocess_data import process_data
 from ..train_model import cat_features
 
 # Optional: implement hyperparameter tuning.
