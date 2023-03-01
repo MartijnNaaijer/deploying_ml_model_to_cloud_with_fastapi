@@ -45,9 +45,11 @@ X_test, y_test, _, _ = ppd.process_data(
     encoder=encoder
 )
 
-# Train and save a model.
+# Train and save a model, encoder and lb.
 model = md.train_model(X_train, y_train)
 md.save_model(model, os.path.join(ROOT, 'model'), 'trained_model.pkl')
+md.save_model(encoder, os.path.join(ROOT, 'model'), 'encoder.pkl')
+md.save_model(encoder, os.path.join(ROOT, 'model'), 'lb.pkl')
 
 
 ## Validate model on testset and slices

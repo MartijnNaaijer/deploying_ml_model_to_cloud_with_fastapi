@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
-from .data_processing.ml import model_data as md
+from data_processing.ml import model_data as md
 
 class InputData(BaseModel):
     age: int
     workclass: str
     fnlgt: int
+    education: str
     education_num: int = Field(alias="education-num")
     marital_status: str = Field(alias="marital-status")
     occupation: str
@@ -30,5 +31,5 @@ async def say_hello():
 @app.post('/inference')
 async def make_inference(data: InputData):
     
-    prediction = md.make_prediction_from_api(data, 'trained_model.pkl')
+    prediction = md.make_inference_from_api(data, './model', 'trained_model.pkl')
     return prediction
