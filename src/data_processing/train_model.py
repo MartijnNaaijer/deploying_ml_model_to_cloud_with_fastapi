@@ -34,13 +34,14 @@ cat_features = [
     "sex",
     "native-country",
 ]
+
 X_train, y_train, encoder, lb = ppd.process_data(
-    train, categorical_features=cat_features, label="salary", training=True
+    train, categorical_features=cat_features, label='salary', training=True
 )
 
 # Proces the test data with the process_data function.
 X_test, y_test, _, _ = ppd.process_data(
-    test, categorical_features=cat_features, label="salary", training=False,
+    test, categorical_features=cat_features, label='salary', training=False,
     encoder=encoder
 )
 

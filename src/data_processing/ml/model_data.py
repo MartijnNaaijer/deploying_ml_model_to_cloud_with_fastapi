@@ -2,8 +2,12 @@ import os
 import pickle
 
 import numpy as np
+import pandas as pd
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
+
+from preprocess_data import process_data
+from ..train_model import cat_features
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -102,6 +106,11 @@ def load_model(folder, filename):
                         filename), 'rb'))
     return model
 
+def convert_to_class(prediction):
+    """"""
+    converted_predictions = np.array(['<=50K' if pred == 0 else '>50K' for pred in prediction])
+    return converted_predictions
+
 
 def make_inference_from_api(input_json, folder, filename):
     """Makes a prediction with a trained and saved model
@@ -109,7 +118,11 @@ def make_inference_from_api(input_json, folder, filename):
     Inputs
     """
     loaded_model = load_model(folder, filename)
-    pass
+    input_df = pd.DataFrame(dict(input_json), index=[0])
+    X_new, _, _, _ = process_data(input_df, categorical_features=cat_features, training=False)
+    prediction = inference(loaded_model, X_new)
+    converted_pred = convert_to_class(prediction)[0]
+    return converted_pred
 
 
 def evaluate_on_slices(test, test_predictions, y_test_array, column_name):

@@ -30,5 +30,5 @@ async def say_hello():
 @app.post('/inference')
 async def make_inference(data: InputData):
     
-    prediction = md.make_prediction_from_api(data)
+    prediction = md.make_prediction_from_api(data, 'trained_model.pkl')
     return prediction
