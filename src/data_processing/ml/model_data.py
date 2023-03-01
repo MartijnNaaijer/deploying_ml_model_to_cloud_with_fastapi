@@ -112,7 +112,7 @@ def convert_to_class(prediction):
     return converted_predictions
 
 
-def make_inference_from_api(input_json, folder, filename):
+def make_inference_from_api(input_json, folder, model_name):
     """Makes a prediction with a trained and saved model
        with data input from the api.
     Inputs
@@ -128,7 +128,7 @@ def make_inference_from_api(input_json, folder, filename):
     "native_country",
     ]
     
-    loaded_model = load_model(folder, filename)
+    loaded_model = load_model(folder, model_name)
     encoder = load_model(folder, 'encoder.pkl')
     lb = load_model(folder, 'lb.pkl')
     input_df = pd.DataFrame(dict(input_json), index=[0])
@@ -136,11 +136,7 @@ def make_inference_from_api(input_json, folder, filename):
                                   encoder=encoder)
     prediction = inference(loaded_model, X_new)
     converted_pred = convert_to_class(prediction)
-    
-    #return str(prediction[0])
-    #converted_pred = lb.inverse_transform(prediction)[0]
-    print('PREDICTION', converted_pred)
-    print(converted_pred[0])
+
     return converted_pred[0]
 
 
