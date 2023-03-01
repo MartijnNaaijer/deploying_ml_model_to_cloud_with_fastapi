@@ -7,7 +7,6 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 
 from .preprocess_data import process_data
-from ..train_model import cat_features
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -117,6 +116,16 @@ def make_inference_from_api(input_json, folder, filename):
        with data input from the api.
     Inputs
     """
+    cat_features = [
+    "workclass",
+    "education",
+    "marital-status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "native-country",
+    ]
     loaded_model = load_model(folder, filename)
     input_df = pd.DataFrame(dict(input_json), index=[0])
     X_new, _, _, _ = process_data(input_df, categorical_features=cat_features, training=False)
