@@ -131,6 +131,7 @@ def make_inference_from_api(input_json, folder, model_name):
     encoder = load_object(folder, 'encoder.pkl')
     lb = load_object(folder, 'lb.pkl')
     input_df = pd.DataFrame(dict(input_json), index=[0])
+    print('COLUMNS:', input_df.columns)
     input_df = clean_data(input_df)
     X_new, _, _, _ = process_data(input_df, categorical_features=cat_features, training=False,
                                   encoder=encoder)
