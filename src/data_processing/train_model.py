@@ -14,12 +14,15 @@ logging.basicConfig(
     filemode='w')
 
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH = '../../data'
 DATA_FILE = 'census.csv'
 
 # Add code to load in the data.
 data = pd.read_csv(os.path.join(DATA_PATH, DATA_FILE), sep=',')
+
+# Do some basic cleaning: remove redundant colsumns, and harmonize values.
+data = ppd.clean_data(data)
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20)
@@ -47,9 +50,9 @@ X_test, y_test, _, _ = ppd.process_data(
 
 # Train and save a model, encoder and lb.
 model = md.train_model(X_train, y_train)
-md.save_model(model, os.path.join(ROOT, 'model'), 'trained_model.pkl')
-md.save_model(encoder, os.path.join(ROOT, 'model'), 'encoder.pkl')
-md.save_model(encoder, os.path.join(ROOT, 'model'), 'lb.pkl')
+md.pickle_object(model, os.path.join(ROOT_DIR, 'model'), 'trained_model.pkl')
+md.pickle_object(encoder, os.path.join(ROOT_DIR, 'model'), 'encoder.pkl')
+md.pickle_object(lb, os.path.join(ROOT_DIR, 'model'), 'lb.pkl')
 
 
 ## Validate model on testset and slices

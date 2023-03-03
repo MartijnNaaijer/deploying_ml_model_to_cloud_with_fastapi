@@ -1,7 +1,11 @@
+import os
+
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
-from data_processing.ml import model_data as md
+from src.data_processing.ml import model_data as md
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class InputData(BaseModel):
     age: int
@@ -25,9 +29,7 @@ class InputData(BaseModel):
             "example": {
             "age": 39,
             "workclass": "State-gov",
-            "fnlgt": 77516,
             "education": "Bachelors",
-            "education_num": 13,
             "marital_status": "Never-married",
             "occupation": "Adm-clerical",
             "relationship": "Not-in-family",
@@ -37,8 +39,8 @@ class InputData(BaseModel):
             "capital_loss": 0,
             "hours_per_week": 40,
             "native_country": "United-States",
+                }
             }
-        }
 
 app = FastAPI()
 
@@ -48,6 +50,9 @@ async def say_hello():
 
 @app.post('/inference')
 async def make_inference(data: InputData):
-    
-    prediction = md.make_inference_from_api(data, './model', 'trained_model.pkl')
+    prediction = md.make_inference_from_api(data, os.path.join(ROOT_DIR, 'deploying_ml_model_to_cloud_with_fastapi/src/model'), 'trained_model.pkl')
     return prediction
+
+
+if __name__ == '__main__':
+    pass

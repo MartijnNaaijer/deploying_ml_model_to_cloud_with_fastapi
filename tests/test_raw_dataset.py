@@ -12,7 +12,7 @@ from .config import ROOT, DATA_FOLDER, DATA_FILE
 
 @pytest.fixture(scope="module")
 def input_df():
-    df = pd.read_csv(os.path.join(ROOT, DATA_FOLDER, DATA_FILE), sep=',')
+    df = pd.read_csv(os.path.join('../data', DATA_FILE), sep=',')
     return df
 
 
@@ -30,6 +30,7 @@ def test_values_in_dependent_variable(input_df):
 
 def test_mean_age(input_df):
     assert 20 < (np.mean(input_df['age'])) < 60
+
 
 def test_education_values(input_df):
     assert np.min(input_df['education-num']) == 1

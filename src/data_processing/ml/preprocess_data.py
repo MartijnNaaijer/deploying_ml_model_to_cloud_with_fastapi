@@ -2,6 +2,28 @@ import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
 
+def clean_data(data):
+    """Remove columns that are redundant or useless:
+    fnlgt, the final weight column. Number that gives rows similar number to similar characteristics.
+    education-num: education, which we already have as categorical feature.
+
+    Also, harmonize the value Holand-Netherlands in the column native-country.
+    See also: https://archive.ics.uci.edu/ml/datasets/census+income.
+
+    Inputs:
+    data: pd.DataFrame
+    Outputs:
+    data: pd.DataFrame
+    """
+    print(data.columns)
+    cols_to_drop = ['fnlgt', 'education-num']
+    data_dropped_cols = data.drop(columns=cols_to_drop)
+
+    data_clean = data_dropped_cols.replace({'native_country': 'Holand',}, 
+                        {'native_country': 'Netherlands',})
+    return data_clean
+
+
 def process_data(
     X, categorical_features=[], label=None, training=True, encoder=None, lb=None
 ):

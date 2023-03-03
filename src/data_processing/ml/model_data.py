@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 
-from .preprocess_data import process_data
+from .preprocess_data import process_data, clean_data
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -74,7 +74,7 @@ def inference(model, X):
     return preds
 
 
-def save_model(model, folder, filename):
+def pickle_object(obj, folder, filename):
     """Save the trained model as pickled file.
     Inputs
     -------
@@ -85,11 +85,10 @@ def save_model(model, folder, filename):
     filename: str
         Name of model file.
     """
-    pickle.dump(model, 
-        open(os.path.join(folder, filename), "wb"))
+    pickle.dump(obj, open(os.path.join(folder, filename), "wb"))
 
 
-def load_model(folder, filename):
+def load_object(folder, filename):
     """Load the pickled model.
     Inputs
     --------
@@ -128,10 +127,11 @@ def make_inference_from_api(input_json, folder, model_name):
     "native_country",
     ]
     
-    loaded_model = load_model(folder, model_name)
-    encoder = load_model(folder, 'encoder.pkl')
-    lb = load_model(folder, 'lb.pkl')
+    loaded_model = load_object(folder, model_name)
+    encoder = load_object(folder, 'encoder.pkl')
+    lb = load_object(folder, 'lb.pkl')
     input_df = pd.DataFrame(dict(input_json), index=[0])
+    input_df = clean_data(input_df)
     X_new, _, _, _ = process_data(input_df, categorical_features=cat_features, training=False,
                                   encoder=encoder)
     prediction = inference(loaded_model, X_new)

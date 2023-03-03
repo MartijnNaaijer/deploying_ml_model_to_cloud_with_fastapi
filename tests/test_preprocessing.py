@@ -9,7 +9,7 @@ from .config import ROOT, DATA_FOLDER, DATA_FILE
  
 @pytest.fixture(scope="module")
 def input_df():
-    df = pd.read_csv(os.path.join(ROOT, DATA_FOLDER, DATA_FILE), sep=',')
+    df = pd.read_csv(os.path.join('../data', DATA_FILE), sep=',')
     return df
 
 
