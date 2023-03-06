@@ -3,7 +3,8 @@ import os
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
-from src.data_processing.ml import model_data as md
+#from .src.data_processing.ml import model_data as md
+import src.data_processing.ml.model_data as md
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
