@@ -12,7 +12,7 @@ import src.data_processing.ml.preprocess_data as ppd
 
 @pytest.fixture(scope="module")
 def input_df():
-    df = pd.read_csv(os.path.join('../data', DATA_FILE), sep=',')
+    df = pd.read_csv(os.path.join(ROOT, 'data', DATA_FILE), sep=',')
     return df
 
 
