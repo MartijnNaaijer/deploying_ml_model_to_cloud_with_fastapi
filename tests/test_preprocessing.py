@@ -5,14 +5,11 @@ import numpy as np
 import pandas as pd
 import pytest
 
-
-sys.path.append('../src')
-import data_processing.ml.preprocess_data as ppd
-
-
 from .config import ROOT, DATA_FOLDER, DATA_FILE
+#sys.path.append(ROOT)
+import src.data_processing.ml.preprocess_data as ppd
 
- 
+
 @pytest.fixture(scope="module")
 def input_df():
     df = pd.read_csv(os.path.join('../data', DATA_FILE), sep=',')
