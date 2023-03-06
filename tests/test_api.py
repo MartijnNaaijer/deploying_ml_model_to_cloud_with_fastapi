@@ -1,7 +1,12 @@
-from fastapi.testclient import TestClient
-from ..main import app
+#import sys
 
-client = TestClient(app)
+from fastapi.testclient import TestClient
+
+import main as mn
+
+# sys.path.append('../src')
+
+client = TestClient(mn.app)
 
 def test_api_locally_get_root():
     r = client.get('/')

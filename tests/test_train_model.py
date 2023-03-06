@@ -5,7 +5,7 @@ import pytest
 import sklearn
 
 from .config import ROOT, DATA_FOLDER, DATA_FILE
-from ..src.data_processing.ml import model_data as md
+from src.data_processing.ml import model_data as md
 
  
 def obj_plugin():

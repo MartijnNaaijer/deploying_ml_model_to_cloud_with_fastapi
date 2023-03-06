@@ -1,9 +1,15 @@
 import os
+import sys
+
 import numpy as np
 import pandas as pd
 import pytest
 
-from ..src.data_processing.ml import preprocess_data as ppd
+
+sys.path.append('../src')
+import data_processing.ml.preprocess_data as ppd
+
+
 from .config import ROOT, DATA_FOLDER, DATA_FILE
 
  
