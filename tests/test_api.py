@@ -1,10 +1,6 @@
-#import sys
-
 from fastapi.testclient import TestClient
 
 import main as mn
-
-# sys.path.append('../src')
 
 client = TestClient(mn.app)
 
@@ -24,9 +20,7 @@ def test_api_prediction():
     input_data = {
             "age": 39,
             "workclass": "State-gov",
-            #"fnlgt": 77516,
             "education": "Bachelors",
-            #"education_num": 13,
             "marital_status": "Never-married",
             "occupation": "Adm-clerical",
             "relationship": "Not-in-family",
