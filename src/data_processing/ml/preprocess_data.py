@@ -20,7 +20,7 @@ def clean_data(data):
     data_dropped_cols = data.drop(columns=cols_to_drop, axis=1, errors='ignore')
 
     data_clean = data_dropped_cols.replace({'native_country': 'Holand',}, 
-                        {'native_country': 'Netherlands',})
+                                           {'native_country': 'Netherlands',})
     return data_clean
 
 

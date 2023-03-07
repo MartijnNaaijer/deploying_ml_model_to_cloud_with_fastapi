@@ -117,26 +117,28 @@ def make_inference_from_api(input_json, folder, model_name):
     Inputs
     """
     cat_features = [
-    "workclass",
-    "education",
-    "marital_status",
-    "occupation",
-    "relationship",
-    "race",
-    "sex",
-    "native_country",
+        "workclass",
+        "education",
+        "marital_status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native_country",
     ]
     
     loaded_model = load_object(folder, model_name)
     encoder = load_object(folder, 'encoder.pkl')
-    lb = load_object(folder, 'lb.pkl')
+    #lb = load_object(folder, 'lb.pkl')
     input_df = pd.DataFrame(dict(input_json), index=[0])
-    print('COLUMNS:', input_df.columns)
+    print(input_df)
     input_df = clean_data(input_df)
     X_new, _, _, _ = process_data(input_df, categorical_features=cat_features, training=False,
                                   encoder=encoder)
     prediction = inference(loaded_model, X_new)
+    print(prediction)
     converted_pred = convert_to_class(prediction)
+    print('CONVERTED PRED', converted_pred)
 
     return converted_pred[0]
 

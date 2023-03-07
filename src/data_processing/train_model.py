@@ -1,8 +1,10 @@
 # Script to train machine learning model.
 import logging
 import os
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.utils import resample
 
 import ml.preprocess_data as ppd
 import ml.model_data as md
@@ -26,6 +28,17 @@ data = ppd.clean_data(data)
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20)
+
+# Apply upsampling of smallest class ('>50K') in output variable.
+# This is done here only on the training set.
+low = train[train['salary'] == '<=50K']
+high = train[train['salary'] == '>50K']
+high_upsample = resample(high,
+                         replace=True,
+                         n_samples=len(low),
+                         random_state=42)
+
+train = pd.concat([low, high_upsample])
 
 cat_features = [
     "workclass",
@@ -58,6 +71,10 @@ md.pickle_object(lb, os.path.join(ROOT_DIR, 'model'), 'lb.pkl')
 ## Validate model on testset and slices
 test_predictions = md.inference(model, X_test)
 y_test_array = md.convert_output_to_binary_array(y_test)
+
+print(test_predictions[:10])
+
+
 
 precision, recall, fbeta = md.compute_model_metrics(y_test_array, test_predictions)
 logging.info('Overall model performance')

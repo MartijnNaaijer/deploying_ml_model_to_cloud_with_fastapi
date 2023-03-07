@@ -3,7 +3,6 @@ import os
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
-#from .src.data_processing.ml import model_data as md
 import src.data_processing.ml.model_data as md
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,20 +25,20 @@ class InputData(BaseModel):
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
-            "age": 39,
-            "workclass": "State-gov",
-            "education": "Bachelors",
-            "marital_status": "Never-married",
-            "occupation": "Adm-clerical",
-            "relationship": "Not-in-family",
-            "race": "White",
-            "sex": "Male",
-            "capital_gain": 2174,
-            "capital_loss": 0,
-            "hours_per_week": 40,
-            "native_country": "United-States",
-                }
+                "age": 39,
+                "workclass": "State-gov",
+                "education": "Bachelors",
+                "marital_status": "Never-married",
+                "occupation": "Adm-clerical",
+                "relationship": "Not-in-family",
+                "race": "White",
+                "sex": "Male",
+                "capital_gain": 2174,
+                "capital_loss": 0,
+                "hours_per_week": 40,
+                "native_country": "United-States",
             }
+        }
 
 app = FastAPI()
 
@@ -49,6 +48,7 @@ async def say_hello():
 
 @app.post('/inference')
 async def make_inference(data: InputData):
+    print(data)
     prediction = md.make_inference_from_api(data, os.path.join(ROOT_DIR, 'deploying_ml_model_to_cloud_with_fastapi/src/model'), 'trained_model.pkl')
     return prediction
 
