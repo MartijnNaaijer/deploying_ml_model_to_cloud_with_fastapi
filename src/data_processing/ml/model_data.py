@@ -95,6 +95,8 @@ def load_object(folder, filename):
     --------
         loaded_object can be a model, encoder or label binarizer.
     """
+    import os
+    print('CURRENT WD:', os.getcwd())
     loaded_object = pickle.load(open(os.path.join(folder, 
                         filename), 'rb'))
     return loaded_object

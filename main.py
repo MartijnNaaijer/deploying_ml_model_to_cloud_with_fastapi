@@ -48,8 +48,9 @@ async def say_hello():
 
 @app.post('/inference')
 async def make_inference(data: InputData):
-    print(data)
-    prediction = md.make_inference_from_api(data, os.path.join(ROOT_DIR, 'deploying_ml_model_to_cloud_with_fastapi/src/model'), 'trained_model.pkl')
+    #prediction = md.make_inference_from_api(data, os.path.join(ROOT_DIR, 'deploying_ml_model_to_cloud_with_fastapi/src/model'), 'trained_model.pkl')
+    #prediction = md.make_inference_from_api(data, os.path.join('./model'), 'trained_model.pkl')
+    prediction = md.make_inference_from_api(data, os.path.join(ROOT_DIR, '/src/model'), 'trained_model.pkl')
     return prediction
 
 
