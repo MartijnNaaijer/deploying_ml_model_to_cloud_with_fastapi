@@ -51,11 +51,6 @@ def compute_model_metrics(y, preds):
     return precision, recall, fbeta
 
 
-def convert_output_to_binary_array(y_test):
-    """"""
-    return np.array([0 if value == '<=50K' else 1 for value in y_test])
-
-
 def inference(model, X):
     """ Run model inferences and return the predictions.
 
@@ -98,11 +93,11 @@ def load_object(folder, filename):
         Name of the model.
     Returns
     --------
-        model
+        loaded_object can be a model, encoder or label binarizer.
     """
-    model = pickle.load(open(os.path.join(folder, 
+    loaded_object = pickle.load(open(os.path.join(folder, 
                         filename), 'rb'))
-    return model
+    return loaded_object
 
 
 def convert_to_class(prediction):
@@ -129,16 +124,12 @@ def make_inference_from_api(input_json, folder, model_name):
     
     loaded_model = load_object(folder, model_name)
     encoder = load_object(folder, 'encoder.pkl')
-    #lb = load_object(folder, 'lb.pkl')
     input_df = pd.DataFrame(dict(input_json), index=[0])
-    print(input_df)
     input_df = clean_data(input_df)
     X_new, _, _, _ = process_data(input_df, categorical_features=cat_features, training=False,
                                   encoder=encoder)
     prediction = inference(loaded_model, X_new)
-    print(prediction)
     converted_pred = convert_to_class(prediction)
-    print('CONVERTED PRED', converted_pred)
 
     return converted_pred[0]
 

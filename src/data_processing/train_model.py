@@ -72,15 +72,10 @@ md.pickle_object(lb, os.path.join(ROOT_DIR, 'model'), 'lb.pkl')
 test_predictions = md.inference(model, X_test)
 y_test_array = md.convert_output_to_binary_array(y_test)
 
-print(test_predictions[:10])
-
-
-
 precision, recall, fbeta = md.compute_model_metrics(y_test_array, test_predictions)
 logging.info('Overall model performance')
 logging.info(f'precision {precision}, recall {recall}, fbeta {fbeta}')
 logging.info('')
-
 
 slice_eval_features = ['sex', 'race']
 for feature in slice_eval_features:
