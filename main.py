@@ -50,7 +50,7 @@ async def say_hello():
 async def make_inference(data: InputData):
     #prediction = md.make_inference_from_api(data, os.path.join(ROOT_DIR, 'deploying_ml_model_to_cloud_with_fastapi/src/model'), 'trained_model.pkl')
     #prediction = md.make_inference_from_api(data, os.path.join('./model'), 'trained_model.pkl')
-    prediction = md.make_inference_from_api(data, os.path.join(ROOT_DIR, 'model'), 'trained_model.pkl')
+    prediction = md.make_inference_from_api(data, os.path.join('./model'), 'trained_model.pkl')
     return prediction
 
 
