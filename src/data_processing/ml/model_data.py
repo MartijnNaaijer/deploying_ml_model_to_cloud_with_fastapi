@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 from .preprocess_data import process_data, clean_data
 
-# Optional: implement hyperparameter tuning.
+
 def train_model(X_train, y_train):
     """
     Trains a machine learning model and returns it.
@@ -95,8 +95,6 @@ def load_object(folder, filename):
     --------
         loaded_object can be a model, encoder or label binarizer.
     """
-    import os
-    print('CURRENT WD:', os.getcwd())
     loaded_object = pickle.load(open(os.path.join(folder, 
                         filename), 'rb'))
     return loaded_object

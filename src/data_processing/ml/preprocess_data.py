@@ -15,7 +15,6 @@ def clean_data(data):
     Outputs:
     data: pd.DataFrame
     """
-    print(data.columns)
     cols_to_drop = ['fnlgt', 'education-num']
     data_dropped_cols = data.drop(columns=cols_to_drop, axis=1, errors='ignore')
 

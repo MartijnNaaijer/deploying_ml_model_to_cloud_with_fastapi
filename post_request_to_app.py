@@ -1,12 +1,6 @@
 import json
 import requests
 
-response = requests.post('https://census-app.herokuapp.com/inference/', 
-                         auth=('martijn.naayer@upcmail.nl', 'Bg%67n(/>mN'))
-
-print(response.status_code)
-print(response.json())
-
 
 data = {"age": 39,
         "workclass": "State-gov",
@@ -21,9 +15,9 @@ data = {"age": 39,
         "hours-per-week": 40,
         "native-country": "United-States",
         }
-response2 = requests.post('https://census-app.herokuapp.com/inference', 
-                          auth=('martijn.naayer@upcmail.nl', 'Bg%67n(/>mN'),
+
+response = requests.post('https://census-app.herokuapp.com/inference',
                           data=json.dumps(data))
 
-print(response2.status_code)
-print(response2.json())
+print('Status:', response.status_code)
+print('Predicted value:', response.json())
