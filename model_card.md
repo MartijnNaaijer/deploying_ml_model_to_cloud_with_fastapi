@@ -25,4 +25,4 @@ There are no specific ethical considerations. The data are openly available.
 
 ## Caveats and Recommendations
 The model is trained on US data. The situation in the US may differ from the European situation, so the model will probably not perform on new European data as on the test set.
-Note that the features that are evaluated in the log file are somewhat imbalanced. The results for the values with many observations may be more reliable than those with fewer observations..
+Note that the features that are evaluated in the log file are somewhat imbalanced. The results for the values with many observations may be more reliable than those with fewer observations.

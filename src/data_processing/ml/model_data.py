@@ -88,9 +88,9 @@ def load_object(folder, filename):
     Inputs
     --------
     folder : str
-        Directory where model is saved.
+        Directory where object is saved.
     filename : str
-        Name of the model.
+        Name of the object.
     Returns
     --------
         loaded_object can be a model, encoder or label binarizer.
@@ -100,7 +100,17 @@ def load_object(folder, filename):
 
 
 def convert_to_class(prediction):
-    """"""
+    """Converts numeric array of predictions to strings with values
+    that can be found in census dataset ("<=50K", ">50K").
+    Input
+    ----------
+    prediction: np.array
+        Raw predictions.
+    Returns
+    ----------
+    converted_predictions: np.array
+        Array containing strings.
+    """
     converted_predictions = np.array(['<=50K' if pred == 0 else '>50K' for pred in prediction])
     return converted_predictions
 
@@ -109,6 +119,17 @@ def make_inference_from_api(input_json, folder, model_name):
     """Makes a prediction with a trained and saved model
        with data input from the api.
     Inputs
+    ---------
+    input_json: str
+        Input data used for prediction.
+    folder: str
+        Folder where model is stored.
+    model_name: str
+        Name of model that will be loaded and used for prediction.
+    Returns
+    ---------
+    converted_pred: str
+        prediction
     """
     cat_features = [
         "workclass",
