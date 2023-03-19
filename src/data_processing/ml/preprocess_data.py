@@ -18,8 +18,8 @@ def clean_data(data):
     cols_to_drop = ['fnlgt', 'education-num']
     data_dropped_cols = data.drop(columns=cols_to_drop, axis=1, errors='ignore')
 
-    data_clean = data_dropped_cols.replace({'native_country': 'Holand',}, 
-                                           {'native_country': 'Netherlands',})
+    data_clean = data_dropped_cols.replace({'native_country': 'Holand'},
+                                           {'native_country': 'Netherlands'})
     return data_clean
 
 

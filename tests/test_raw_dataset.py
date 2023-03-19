@@ -35,4 +35,3 @@ def test_mean_age(input_df):
 def test_education_values(input_df):
     assert np.min(input_df['education-num']) == 1
     assert np.max(input_df['education-num']) == 16
-    

@@ -95,8 +95,7 @@ def load_object(folder, filename):
     --------
         loaded_object can be a model, encoder or label binarizer.
     """
-    loaded_object = pickle.load(open(os.path.join(folder, 
-                        filename), 'rb'))
+    loaded_object = pickle.load(open(os.path.join(folder, filename), 'rb'))
     return loaded_object
 
 
@@ -121,7 +120,7 @@ def make_inference_from_api(input_json, folder, model_name):
         "sex",
         "native_country",
     ]
-    
+
     loaded_model = load_object(folder, model_name)
     encoder = load_object(folder, 'encoder.pkl')
     input_df = pd.DataFrame(dict(input_json), index=[0])
@@ -144,7 +143,7 @@ def evaluate_on_slices(test, test_predictions, y_test_array, column_name):
     column_name: str  Categorical column from which slices are evaluated.
     Outputs:
     value: str  Value on which evaluation takes place.
-    slice_length: int  Number of observations of specific value in test set. 
+    slice_length: int  Number of observations of specific value in test set.
     precision: float  Evaluation metric.
     recall: float  Evaluation metric.
     fbeta: float  Evaluation metric.

@@ -16,14 +16,14 @@ def input_df():
 
 @pytest.fixture(scope="module")
 def processed_data(input_df):
-    cat_features=["workclass",
-    "education",
-    "marital-status",
-    "occupation",
-    "relationship",
-    "race",
-    "sex",
-    "native-country"]
+    cat_features = ["workclass",
+                    "education",
+                    "marital-status",
+                    "occupation",
+                    "relationship",
+                    "race",
+                    "sex",
+                    "native-country"]
     return ppd.process_data(input_df, categorical_features=cat_features, label='salary')
 
 

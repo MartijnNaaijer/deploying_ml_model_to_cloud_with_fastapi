@@ -4,6 +4,7 @@ import main as mn
 
 client = TestClient(mn.app)
 
+
 def test_api_locally_get_root():
     r = client.get('/')
     assert r.status_code == 200
@@ -34,6 +35,7 @@ def test_api_prediction_low_output():
     response = client.post("/inference", json=input_data)
     assert response.status_code == 200
     assert response.json() == "<=50K"
+
 
 def test_api_prediction_high_output():
     input_data = {
