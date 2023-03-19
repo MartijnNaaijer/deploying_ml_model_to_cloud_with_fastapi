@@ -17,7 +17,7 @@ data = {"age": 39,
         }
 
 response = requests.post('https://census-app.herokuapp.com/inference',
-                          data=json.dumps(data))
+                         data=json.dumps(data))
 
 print('Status:', response.status_code)
 print('Predicted value:', response.json())

@@ -54,13 +54,13 @@ app = FastAPI()
 
 @app.get('/')
 async def say_hello():
-    return({'greeting': 'Hi, what about making an inference?'})
+    return {'greeting': 'Hi, what about making an inference?'}
 
 
 @app.post('/inference')
 async def make_inference(data: InputData):
     prediction = md.make_inference_from_api(data,
-                                            os.path.join(ABS_PATH, 'src/model'), 
+                                            os.path.join(ABS_PATH, 'src/model'),
                                             'trained_model.pkl')
     return prediction
 
